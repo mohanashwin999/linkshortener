@@ -3,7 +3,7 @@ from . import views
 
 app_name="home"
 urlpatterns = [
-    path('sl/', views.shorten_url_form, name="urlForm"),
+    path('', views.shorten_url_form, name="urlForm"),
     path('cp/', views.shorten_code_form, name="codePaste"),
 
     path('short-urls/', views.display_all_urls, name="urlsDisplay"),
