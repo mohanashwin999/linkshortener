@@ -1,0 +1,35 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+#urlFormContainer {
+    width: 65%;
+    margin: 1% auto;
+    padding: 1%;
+}
+
+#signupForm {
+    width: 60%;
+    margin: 1% auto;
+    padding: 1%;
+    background: #c0c0aa;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.content {
+    flex: 1 0 auto;
+}
+
+.footer {
+    flex-shrink: 0;
+}

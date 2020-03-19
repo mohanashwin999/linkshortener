@@ -1,0 +1,32 @@
+{% extends "home/base.html" %} 
+
+{% block title %} Login | ShortLink {% endblock %}
+
+{% block body %}
+<div id="signupForm" class="container shadow bg-white rounded">
+    <center><h3 class="section-heading">Login</h3></center>
+    <hr>
+    <form method="POST">
+        {% csrf_token %} 
+
+        {% if error_mesaage %}
+            <span style="color:red;"> {{error_message}} </span>             
+        {% endif %}
+             
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" class="form-control" id="username" placeholder="Username"  name="username" required />
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" placeholder="Password" name="password" required />
+        </div>
+
+       <center><button type="submit"  class="btn btn-primary">Login</button></center>
+       <hr>
+       <center>Does not have a account ? <a href="{% url 'home:signup' %}">Sign-Up</a></center>
+    </form>
+</div>
+
+ {% endblock %}

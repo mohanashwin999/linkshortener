@@ -1,0 +1,32 @@
+{% extends "home/base.html" %} 
+
+{% block title %} URLs | ShortLink {% endblock %}
+
+{% block body %}
+
+
+<div class="container mt-4 mb-4">
+    <div class="center">
+        <p class="section-heading">Short Links of Pasted URLs</p>
+    </div>
+    <hr>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">Description</th>
+                <th scope="col">Actual Links</th>
+                <th scope="col">Short Links</th>
+                </tr>
+        </thead>
+        <tbody>
+            {% for i in urls %}
+            <tr>
+                <td>{{i.0}}</td>
+                <td><a href="{{i.1}}">{{i.1}}</a></td>
+                <td><a href="{{i.2}}">{{i.2}}</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+ {% endblock %}

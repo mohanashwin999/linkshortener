@@ -1,0 +1,49 @@
+{% extends "home/base.html" %} 
+
+{% block title %} Sign-Up | ShortLink {% endblock %}
+
+{% block body %}
+<div id="signupForm" class="container shadow bg-white rounded">
+    <center><h3 class="section-heading">Sign-Up</h3></center>
+    <hr>
+    <form method="POST">
+        {% csrf_token %} 
+        
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" placeholder="Email"  name="email" required />
+            {% if email_error %}
+            <span style="color:red;"> {{email_error}} </span>             
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" class="form-control" id="username" placeholder="Username"  name="username" required />
+            {% if username_error %}
+            <span style="color:red;"> {{username_error}} </span>             
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" placeholder="Password" name="password" required />
+        </div>
+
+        <div class="form-group">
+            <label for="fname">First Name</label>
+            <input type="text" class="form-control" id="fname" placeholder="First Name" name="fname" required />
+        </div>
+
+        <div class="form-group">
+            <label for="lname">Last Name</label>
+            <input type="text" class="form-control" id="lname" placeholder="Last Name" name="lname" required />
+        </div>
+
+       <center><button type="submit" class="btn btn-primary">Sign-Up</button></center>
+       <hr>
+       <center>Already have a account ? <a href="{% url 'home:login' %}">Login</a></center>
+    </form>
+</div>
+
+ {% endblock %}

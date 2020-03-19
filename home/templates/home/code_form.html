@@ -1,0 +1,69 @@
+{% extends "home/base.html" %} 
+
+{% block title %} Code-Shortener | ShortLink {% endblock %}
+
+{% block body %}
+<div id="urlFormContainer" class="container shadow bg-white rounded">
+    <center><h3 class="section-heading" >Code Shortener</h3></center>
+    <hr>
+
+    <form method="POST" id="urlForm">
+    
+        {% csrf_token %}
+       
+        {% if url %}
+        <p>Your URL is <a href="{{url}}">{{url}}</a></p>
+        {% endif %}
+
+        <div class="form-group">
+            <label for="code">Paste The Code *</label>
+            <textarea rows="10" type="text" class="form-control" id="code" placeholder="Code" name="code" required /></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="backhalf">Enter Back-Half * </label>
+            <input type="text" class="form-control" id="desc" placeholder="Back-Half" name="backhalf" required />
+            {% if backhalf_error %}
+            <span style="color:red;"> {{backhalf_error}} </span>             
+            {% endif %}
+        </div>
+
+        <div class="form-group">
+            <label for="username">Enter Username</label>
+            <input type="text" class="form-control" id="username" placeholder="Username"  name="username" />
+            {% if username_error %}
+            <span style="color:red;"> {{username_error}} </span>             
+            {% endif %}
+            <small id="urlHelp" class="form-text text-muted">
+                Entering username will add short-link to your profile.
+            </small>
+        </div>
+
+        <div class="form-group">
+            <label for="description">Enter Description </label>
+            <textarea rows="3" type="text" class="form-control" id="description" placeholder="Description" name="description"></textarea>
+        </div>
+
+        <center><button type="submit" class="btn btn-success">Create</button></center>
+    </form>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#urlForm").submit(function (e) {
+            var pattern = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
+            var url = document.getElementById("url").value;
+
+            $("url-error").html("");
+
+            if (!pattern.test(url)) {
+                $("#url-error").html("URL is not valid!");
+                e.preventDefault();
+                return false;
+            }
+        });
+    });
+</script>
+
+ {% endblock %}
