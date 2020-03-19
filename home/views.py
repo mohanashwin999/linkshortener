@@ -10,7 +10,7 @@ from django.contrib.auth.decorators import login_required
 
 from home.models import url_shortener,code_shortener
 
-front_url='https://sl-cp.herokuapp.com/'
+front_url='https://slcp.herokuapp.com/'
 
 def signup(request):
     '''This function creates an account'''
