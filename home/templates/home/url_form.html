@@ -26,7 +26,8 @@
 
         <div class="form-group">
             <label for="backhalf">Enter Back-Half * </label>
-            <input type="text" class="form-control" id="desc" placeholder="Back-Half" name="backhalf" required />
+            <input type="text" class="form-control" id="backhalf" placeholder="Back-Half" name="backhalf" required />
+            <div id="result"></div>
             {% if backhalf_error %}
             <span style="color:red;"> {{backhalf_error}} </span>             
             {% endif %}
@@ -67,6 +68,11 @@
                 return false;
             }
         });
+
+        $("#backhalf").on("input", function(){
+        // Print entered value in a div box
+        $("#result").text("Link : https://slcp.herokuapp.com/code/"+$(this).val()+"/");
+          });
     });
 </script>
 
