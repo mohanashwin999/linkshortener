@@ -13,14 +13,16 @@
         <thead>
             <tr>
                 <th scope="col">Description</th>
-                <th scope="col">Link</th>
+                <th scope="col">Date added</th>
+                <th scope="col">Short Link</th>
                 </tr>
         </thead>
         <tbody>
             {% for i in codes %}
             <tr>
-                <td>{{i.0}}</td>
-                <td><a href="{{i.1}}">{{i.1}}</a></td>
+                <td>{{i.description}}</td>
+                <td>{{i.date_time|date:'d-m-Y'}}</td>
+                <td><a href="{{url}}{{i.back_half}}/">{{url}}{{i.back_half}}/</a></td>
             </tr>
             {% endfor %}
         </tbody>

@@ -1,64 +1,69 @@
-{% extends "home/base.html" %} 
+{% extends "home/base.html" %}
 
 {% block title %} Dashboard | ShortLink {% endblock %}
 
 {% block body %}
 
-<div class="row container mt-4 mb-4">
-    <div class="col">
+<div class="container mt-4 mb-4">
+    <div class="row">
+        <div class="col">
 
-        <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Link Shortener</h5>
-              <p class="card-text">Shorten large URLs to small links which you can remember</p>
-              <a class="btn btn-light" href="{%url 'home:urlForm'%}">Try It</a>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Link Shortener</h5>
+                    <p class="card-text">Shorten large URLs to small links which you can remember</p>
+                    <a class="btn btn-light" href="{%url 'home:urlForm'%}">Try It</a>
+                </div>
             </div>
+
+        </div>
+
+        <div class="col">
+
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Code Paster</h5>
+                    <p class="card-text">Paste your code and get a short link to access the code</p>
+                    <a class="btn btn-light" href="{%url 'home:codePaste'%}">Try It</a>
+                </div>
+            </div>
+
         </div>
 
     </div>
+    
+    <br>
 
-    <div class="col">
+    <div class="row">
+        <div class="col">
 
-        <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Code Paster</h5>
-              <p class="card-text">Paste your code and get a short link to access the code</p>
-              <a class="btn btn-light" href="{%url 'home:codePaste'%}">Try It</a>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">View Your Short Links</h5>
+                    <p class="card-text">You can view all short links you created</p>
+                    <a class="btn btn-light" href="{%url 'home:urlsDisplay'%}">Go</a>
+                </div>
             </div>
+
         </div>
+
+        <div class="col">
+
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">View your codes</h5>
+                    <p class="card-text">Get access to all codes you pasted!</p>
+                    <a class="btn btn-light" href="{%url 'home:codesDisplay'%}">Go</a>
+                </div>
+            </div>
+
+        </div>
+
+
 
     </div>
-
-    <div class="row container mt-4 mb-4">
-        <div class="col">
-    
-            <div class="card">
-                <div class="card-body">
-                  <h5 class="card-title">View Your Short Links</h5>
-                  <p class="card-text">You can view all short links you created</p>
-                  <a class="btn btn-light" href="{%url 'home:urlsDisplay'%}">Go</a>
-                </div>
-            </div>
-    
-        </div>
-    
-        <div class="col">
-    
-            <div class="card">
-                <div class="card-body">
-                  <h5 class="card-title">View your codes</h5>
-                  <p class="card-text">Get access to all codes you pasted!</p>
-                  <a class="btn btn-light" href="{%url 'home:codesDisplay'%}">Go</a>
-                </div>
-            </div>
-    
-        </div>
-    
-
 
 </div>
-
-
 
 
 {% endblock %}
