@@ -3,17 +3,8 @@
     padding: 0;
 }
 
-#urlFormContainer {
-    width: 65%;
-    margin: 1% auto;
-    padding: 1%;
-}
-
-#signupForm {
-    width: 60%;
-    margin: 1% auto;
-    padding: 1%;
-    background: #c0c0aa;
+.navbar-dark{
+    background-color: #0074B7;
 }
 
 html, body {
