@@ -90,7 +90,7 @@ DATABASES = {
 
         'ENGINE': 'django.db.backends.postgresql',
 
-        'NAME': ‘shortlink’,
+        'NAME': 'shortlink',
 
         'USER': 'ashwin',
 
