@@ -9,9 +9,12 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
 from home.models import url_shortener, code_shortener, media_uploader
+from urlshortener.config import BUCKET_URL
 
-front_url = 'https://slcp.herokuapp.com/'
 
+#front_url = 'https://slcp.herokuapp.com/'
+bucket_url = BUCKET_URL
+front_url = 'http://localhost:8000/'  #for development
 
 def signup(request):
     '''This function creates an account'''
@@ -185,7 +188,7 @@ def media_upload(request):
 def return_media(request, key):
     try:
         mobj = media_uploader.objects.get(back_half = key)
-        url = front_url + 'media/'+ str(mobj.file)
+        url = bucket_url + str(mobj.file)
         return redirect(url)
     except:
         return render(request, "home/error.html")

@@ -8,7 +8,7 @@
     <form method="POST" id="urlForm" enctype="multipart/form-data">
 
         {% csrf_token %} {% if url %}
-        <p>Your URL is <a href="{{url}}">{{url}}</a></p>
+        <p>File uploaded successfully! Your URL is <a href="{{url}}">{{url}}</a></p>
         {% endif %}
 
         <div class="form-group">
@@ -28,7 +28,7 @@
         </div>
 
         <div class="form-group">
-            <label for="username">Enter Username</label>
+            <label for="username">Enter Username *</label>
             <input type="text" class="form-control" id="username" placeholder="Username" name="username" required /> {% if username_error %}
             <span style="color:red;"> {{username_error}} </span> {% endif %}
             <small id="urlHelp" class="form-text text-muted">
@@ -41,17 +41,19 @@
             <textarea rows="3" type="text" class="form-control" id="description" placeholder="Description" name="description"></textarea>
         </div>
 
-        <center><button type="submit" type="submit" class="btn primary mb-3 mt-3 p-2" style="width:100%">Create</button></center>
+        <center><button type="submit" type="submit" class="btn primary mb-3 mt-3 p-2" style="width:100%">Create</button>
+        </center>
     </form>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script>
-    $("#backhalf").on("input", function() {
-    // Print entered value in a div box
-    $("#result").text("Link : https://slcp.herokuapp.com/media/" + $(this).val() + "/");
-    });
+    $(document).ready(function() {
+
+        $("#backhalf").on("input", function() {
+            // Print entered value in a div box
+            $("#result").text("Link : https://slcp.herokuapp.com/media/" + $(this).val() + "/");
+        });
     });
 </script>
-
 {% endblock %}
