@@ -7,4 +7,3 @@ media/*
 migrations
 db.sqlite3
 staticfiles
-Procfile
