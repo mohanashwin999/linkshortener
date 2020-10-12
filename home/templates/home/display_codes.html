@@ -9,12 +9,13 @@
         <p class="section-heading">Short Links of Pasted Codes</p>
     </div>
     <hr>
-    <table class="table table-hover">
+    <table class="table table-hover responsive">
         <thead>
             <tr>
                 <th scope="col">Description</th>
                 <th scope="col">Date added</th>
                 <th scope="col">Short Link</th>
+                <th scope="col"></th>
                 </tr>
         </thead>
         <tbody>
@@ -23,6 +24,7 @@
                 <td>{{i.description}}</td>
                 <td>{{i.date_time|date:'d-m-Y'}}</td>
                 <td><a href="{{url}}{{i.back_half}}/">{{url}}{{i.back_half}}/</a></td>
+                <td><a href="{% url 'home:deleteLink' id=i.id %}" class="btn btn-danger">Delete</a></td>
             </tr>
             {% endfor %}
         </tbody>

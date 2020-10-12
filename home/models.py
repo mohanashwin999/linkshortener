@@ -16,4 +16,13 @@ class code_shortener(models.Model):
     description = models.TextField(default='')
     date_time = models.DateTimeField(default=datetime.now, blank=True)
 
+class media_uploader(models.Model):
+    username = models.CharField(max_length=30, default='')
+    file = models.FileField(upload_to="home")
+    back_half = models.CharField(max_length=50,unique=True)
+    description = models.TextField(default='')
+    date_time = models.DateTimeField(default=datetime.now, blank=True)
+    
+
+
 

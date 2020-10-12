@@ -3,8 +3,8 @@
 {% block title %} Sign-Up | ShortLink {% endblock %}
 
 {% block body %}
-<div id="signupForm" class="container shadow bg-white rounded">
-    <center><h3 class="section-heading">Sign-Up</h3></center>
+<div id="signupForm" class="mx-auto card m-5 p-3 col-12 col-sm-4">
+    <center><h3 class="section-heading">Register</h3></center>
     <hr>
     <form method="POST">
         {% csrf_token %} 
@@ -40,7 +40,7 @@
             <input type="text" class="form-control" id="lname" placeholder="Last Name" name="lname" required />
         </div>
 
-       <center><button type="submit" class="btn btn-primary">Sign-Up</button></center>
+       <center><button type="submit" style="width:100%" class="btn primary mb-2 mt-2 p-2">Sign-Up</button></center>
        <hr>
        <center>Already have a account ? <a href="{% url 'home:login' %}">Login</a></center>
     </form>

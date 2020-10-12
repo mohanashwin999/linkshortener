@@ -1,61 +1,80 @@
-{% extends "home/base.html" %}
+{% extends "home/base.html" %} {% block title %} Home | ShortLink {% endblock %}{% load static%} {% block body %}
 
-{% block title %} Home | ShortLink {% endblock %}
+<header class="jumbotron">
+    <div class="container">
+        <div class="row row-header">
+            <div class="col-12 col-sm-6">
+                <h1>ShortLink</h1>
+                <p>The one stop for storing your codes, files, URLs, etc and share them easily using links.</p>
+            </div>
+            <div class="col-12  col-sm align-self-center">
+            </div>
+            <div class="col-12 col-sm align-self-center">
+                <a type="button" class="btn btn-warning nav-link btn-block" role="button" id="reserveButton" href="#features">Try it Now</a>
+            </div>
+        </div>
+    </div>
+</header>
 
-{% block body %}
 
-<div class="container mt-4 mb-4" style="margin: auto;">
-    <div class="row">
+<div class="container">
 
-        <div class="col">
 
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Link Shortener</h5>
-                    <p class="card-text">Shorten large URLs to small links which you can remember</p>
-                    <a class="btn btn-light" href="{%url 'home:urlForm'%}">Try It</a>
+    <div class="row row-content align-items-center" id="features">
+        <h2 class="mx-auto row m-5">The Features</h2>
+
+        <div class="row">
+            <div class="col-12 col-sm-4">
+                <div class="card m-1" style="">
+                    <div class="card-body">
+                        <h5 class="card-title">Code Paster</h5>
+                        <p class="card-text">Just paste the code/notes in the text-area and save it. If you have an account you can retrieve them later using shortlinks.</p>
+                        <a href="{% url 'home:codePaste'%}" class="card-link">Try It!</a>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-12 col-sm-4">
+                <div class="card m-1" style="">
+                    <div class="card-body">
+                        <h5 class="card-title">Link Shortener</h5>
+                        <p class="card-text">Save your long URLs with a back-half of your choice. If you have an account you can view the later.</p>
+                        <a href="{% url 'home:urlForm'%}" class="card-link">Try It!</a>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <div class="col-12 col-sm-4">
+                <div class="card m-1" style="">
+                    <div class="card-body">
+                        <h5 class="card-title">Media Uploader</h5>
+                        <p class="card-text">You can upload your files upto 3MB. If you have an account You can retreive them later using shortlinks.</p>
+                        <a href="{% url 'home:mediaUpload' %}" class="card-link">Try It!</a>
+                    </div>
                 </div>
             </div>
 
         </div>
+    </div>
 
-        <div class="col">
+    <div class="row row-content align-items-center">
+        <h2 class="row m-3 mx-auto">How to use?</h2>
+        <div class="col-12">
+            <ol style="font-size: 18px">
+                <li class="m-1">Create an account on ShortLink. (if you want to save all codes/files/urls)</li>
+                <li class="m-1">You need to paste codes/ urls or upload files in the respective forms and add a back-half of your choice to access them later.</li>
+                <li class="m-1">Adding an username will help to retreive your codes/files. This is done to save your things faster instead of logging in and save them</li>
+                <li class="m-1">You can view your codes/ urls/ files by logging in later.</li>
+            </ol>
 
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Code Paster</h5>
-                    <p class="card-text">Paste your code and get a short link to access the code</p>
-                    <a class="btn btn-light" href="{%url 'home:codePaste'%}">Try It</a>
-                </div>
-            </div>
 
         </div>
 
-    </div>
 
-    <br>
 
- <div class="row">
-    <div class="col">
-        
-         <div class="card" style="width: 100%;">
-            <div class="card-body">
-                <h5 class="card-title">Account</h5>
-                <p class="card-text">You can view all your Short Links and Code links if you have a account.</p>
-                <a class="btn btn-light m-3" href="{%url 'home:signup'%}">Signup</a>
-                <a class="btn btn-light m-3" href="{%url 'home:login'%}">Login</a>
-            </div>
-        </div>
 
     </div>
 
-</div>
-
-
-
-</div>
-
-
-
-
-{% endblock %}
+    {% endblock %}

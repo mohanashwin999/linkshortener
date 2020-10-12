@@ -24,9 +24,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '6yha@ma_uhib##ldv7xnc-(cp8@5*j$x$+&rd4cg$&&49q*4!8'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'home'
+    'home',
 ]
 
 MIDDLEWARE = [
@@ -75,34 +75,14 @@ WSGI_APPLICATION = 'urlshortener.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-'''
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-'''
 
-DATABASES = {
 
-    'default': {
-
-        'ENGINE': 'django.db.backends.postgresql',
-
-        'NAME': 'postgres',
-
-        'USER': 'ashwin',
-
-        'PASSWORD': 'unni8888',
-
-        'HOST': 'shortlink.comgskgglvgz.ap-south-1.rds.amazonaws.com',
-
-        'PORT': '5432',
-
-    }
-
-}
 # Password validation
 # https://docs.djangoproject.com/en/2.2/ref/settings/#auth-password-validators
 
@@ -143,3 +123,5 @@ STATIC_URL = '/static/'
 
 LOGIN_URL = '/login/'
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

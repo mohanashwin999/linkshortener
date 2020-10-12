@@ -8,7 +8,7 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
-from home.models import url_shortener, code_shortener
+from home.models import url_shortener, code_shortener, media_uploader
 
 front_url = 'https://slcp.herokuapp.com/'
 
@@ -88,7 +88,7 @@ def shorten_url_form(request):
         description = request.POST.get("description")
 
         if username != '' and not User.objects.filter(username=username).exists():         #if username is entered and username does not exist      
-            return render(request, "home/url_form.html", {'username_error': "Entered username does not exist!"})
+            return render(request, "home/url_form.html", {'username_error': "Entered username does not exist! Please Signup."})
 
         if url_shortener.objects.filter(back_half=back_half).exists():                  # check back half exist 
             return render(request, "home/url_form.html", {'backhalf_error': "Entered Back-Half already exists!"})
@@ -100,7 +100,7 @@ def shorten_url_form(request):
             s.username = username
             s.save()
 
-        return_url = front_url+back_half+'/'
+        return_url = front_url+ 'link/' + back_half+'/'
         return render(request, "home/url_form.html", {'url': return_url})
     
     else:                                                                             #get method
@@ -115,7 +115,7 @@ def redirect_to_url(request, key):
         return redirect(sobj.url)
     
     except:
-        return HttpResponse("<h1>ShortLink says:</h1><p>No such URL found</p>", content_type="html")
+        return render(request, "home/error.html")
 
 
 def shorten_code_form(request):
@@ -128,7 +128,7 @@ def shorten_code_form(request):
         description = request.POST.get("description")
 
         if username != '' and not User.objects.filter(username=username).exists():         #if username is entered and username does not exist      
-            return render(request, "home/code_form.html", {'username_error': "Entered username does not exist!"})
+            return render(request, "home/code_form.html", {'username_error': "Entered username does not exist! Please Signup."})
        
         if code_shortener.objects.filter(back_half=back_half).exists():                 #back-half exists check
             return render(request, "home/code_form.html", {'backhalf_error': "Entered Back-Half already exists!"})
@@ -147,6 +147,48 @@ def shorten_code_form(request):
     else:                                                                    #Get method
         return render(request, "home/code_form.html")
 
+def media_upload(request):
+    if request.method == "POST":                                    #post method
+        file = request.FILES["file"]
+        username = request.POST.get("username")
+        back_half = request.POST.get("backhalf")
+        description = request.POST.get("description")
+
+        if not username:
+            return render(request, "home/media_form.html", {'username_error': "Username is required for uploading media!"})
+
+        if file.size > 3145728:
+            return render(request, "home/media_form.html", {'size_error': "File size greater than 3MB!"})
+        
+
+        if username != '' and not User.objects.filter(username=username).exists():         #if username is entered and username does not exist      
+            return render(request, "home/media_form.html", {'username_error': "Entered username does not exist! Please Signup."})
+       
+        if media_uploader.objects.filter(back_half=back_half).exists():                 #back-half exists check
+            return render(request, "home/media_form.html", {'backhalf_error': "Entered Back-Half already exists!"})
+        else:
+           
+            m = media_uploader()                                                     # database entry
+            m.file = file
+            m.back_half = back_half
+            m.description = description
+            m.username = username
+            m.save()
+
+        return_url = front_url+'file/'+back_half+'/'
+        return render(request, "home/media_form.html", {'url': return_url})
+   
+    else:                                                                    #Get method
+        return render(request, "home/media_form.html")
+
+   
+def return_media(request, key):
+    try:
+        mobj = media_uploader.objects.get(back_half = key)
+        url = front_url + 'media/'+ str(mobj.file)
+        return redirect(url)
+    except:
+        return render(request, "home/error.html")
 
 def display_code(request, key):
     '''This function receives back-half as parameter and displays your pasted code'''
@@ -155,7 +197,7 @@ def display_code(request, key):
         cobj = code_shortener.objects.get(back_half=key)
         return render(request, "home/display_code.html", {'code': cobj.code})
     except:
-        return HttpResponse("<h1>ShortLink says:</h1><p>No such URL found</p>", content_type="html")
+        return render(request, "home/error.html")
 
 
 @login_required
@@ -172,3 +214,37 @@ def display_all_urls(request):
    
     uobj = url_shortener.objects.filter(username=request.user).order_by('-date_time')                    #filter by username descending order
     return render(request, "home/display_urls.html", {'urls': uobj, 'url' : front_url})
+
+@login_required
+def display_all_media(request):
+    '''Display all files of the user logged in'''
+   
+    cobj = media_uploader.objects.filter(username=request.user).order_by('-date_time')                  #filter by username descending order
+    return render(request, "home/display_media.html", {'media': cobj, 'url' : front_url+'file/'})
+
+
+@login_required
+def delete_code(request, id):
+    try:
+        code_shortener.objects.get(pk=id).delete()
+    except:
+        pass
+    return redirect('home:codesDisplay')  
+
+@login_required     
+def delete_link(request, id):
+    try:
+        url_shortener.objects.get(pk=id).delete()
+    except:
+        pass
+    return redirect('home:urlsDisplay')
+
+@login_required     
+def delete_media(request, id):
+    try:
+        media_uploader.objects.get(pk=id).delete()
+    except:
+        pass
+    return redirect('home:mediaDisplay')
+
+

@@ -1,0 +1,57 @@
+{% extends "home/base.html" %} {% block title %} Media-Uploader | ShortLink {% endblock %} {% block body %}
+<div id="urlFormContainer" class="mx-auto card m-5 p-3 col-12 col-sm-4">
+    <center>
+        <h3 class="section-heading">Media Uploader</h3>
+    </center>
+    <hr>
+
+    <form method="POST" id="urlForm" enctype="multipart/form-data">
+
+        {% csrf_token %} {% if url %}
+        <p>Your URL is <a href="{{url}}">{{url}}</a></p>
+        {% endif %}
+
+        <div class="form-group">
+            <label for="url">Upload File *</label>
+            <input type="file" class="form-control-file" id="file" placeholder="Upload" name="file" required /> {% if size_error %}
+            <span id="size-error" style="color:red;">{{size_error}}</span> {% endif %}
+            <small id="urlHelp" class="form-text text-muted">
+                Max file size: 3MB
+            </small>
+        </div>
+
+        <div class="form-group">
+            <label for="backhalf">Enter Back-Half * </label>
+            <input type="text" class="form-control" id="backhalf" placeholder="Back-Half" name="backhalf" required />
+            <small id="result"></small> {% if backhalf_error %}
+            <span style="color:red;"> {{backhalf_error}} </span> {% endif %}
+        </div>
+
+        <div class="form-group">
+            <label for="username">Enter Username</label>
+            <input type="text" class="form-control" id="username" placeholder="Username" name="username" required /> {% if username_error %}
+            <span style="color:red;"> {{username_error}} </span> {% endif %}
+            <small id="urlHelp" class="form-text text-muted">
+                Entering username will add short-link to your profile.
+            </small>
+        </div>
+
+        <div class="form-group">
+            <label for="description">Enter Description </label>
+            <textarea rows="3" type="text" class="form-control" id="description" placeholder="Description" name="description"></textarea>
+        </div>
+
+        <center><button type="submit" type="submit" class="btn primary mb-3 mt-3 p-2" style="width:100%">Create</button></center>
+    </form>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script>
+    $("#backhalf").on("input", function() {
+    // Print entered value in a div box
+    $("#result").text("Link : https://slcp.herokuapp.com/media/" + $(this).val() + "/");
+    });
+    });
+</script>
+
+{% endblock %}

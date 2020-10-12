@@ -1,12 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Code | ShortLink</title>
-</head>
-<body>
-    <pre>{{code}}</pre>
-    
-</body>
-</html>
+{% extends "home/base.html" %} {% block title %} Code | ShortLink {% endblock %} {% block body %}{% load static %}
+<div class="container">
+
+    <div class="m-4 p-4">
+        <div class="row m-3 p-3">
+            <h3 class="col-8">Your Code</h3>
+            <div class="col-4"><button class="btn ternary" onclick="copy()"><span class="fa fa-clipboard"></span> Copy
+                    to
+                    clipboard</button></div>
+        </div>
+        <textarea id="code" rows="30" class="m-2 p-2" style="width:100%; border-radius: 6px;">{{code}}</textarea>
+    </div>
+
+
+</div>
+<script>
+    function copy() {
+        let textarea = document.getElementById("code");
+        textarea.select();
+        document.execCommand("copy");
+    }
+</script>
+
+{% endblock %}

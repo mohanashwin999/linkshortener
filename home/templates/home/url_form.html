@@ -3,7 +3,7 @@
 {% block title %} Link-Shortener | ShortLink {% endblock %}
 
 {% block body %}
-<div id="urlFormContainer" class="container shadow bg-white rounded">
+<div id="urlFormContainer" class="mx-auto card m-5 p-3 col-12 col-sm-4">
     <center><h3 class="section-heading" >Link Shortener</h3></center>
     <hr>
 
@@ -27,7 +27,7 @@
         <div class="form-group">
             <label for="backhalf">Enter Back-Half * </label>
             <input type="text" class="form-control" id="backhalf" placeholder="Back-Half" name="backhalf" required />
-            <div id="result"></div>
+            <small id="result"></small>
             {% if backhalf_error %}
             <span style="color:red;"> {{backhalf_error}} </span>             
             {% endif %}
@@ -49,7 +49,7 @@
             <textarea rows="3" type="text" class="form-control" id="description" placeholder="Description" name="description"></textarea>
         </div>
 
-        <center><button type="submit" class="btn btn-success">Create</button></center>
+        <center><button type="submit" type="submit" class="btn primary mb-3 mt-3 p-2" style="width:100%">Create</button></center>
     </form>
 </div>
 
@@ -71,7 +71,7 @@
 
         $("#backhalf").on("input", function(){
         // Print entered value in a div box
-        $("#result").text("Link : https://slcp.herokuapp.com/code/"+$(this).val()+"/");
+        $("#result").text("Link : https://slcp.herokuapp.com/link/"+$(this).val()+"/");
           });
     });
 </script>
